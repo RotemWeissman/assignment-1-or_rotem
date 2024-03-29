@@ -36,3 +36,8 @@ In the language_modeling.py file, implement the *generate* function which takes 
 
 #### PART 6
 Play with your generate function, try to generate different texts in different language and various values of *n*. No need to submit anything of that.
+
+## General instructions
+Please make sure to commit and push only the language_modeling.py file. Please avoid changing/deleting any files under the .github folder as it may interfer with the autograding operation.
+
+GOOD LUCK!
