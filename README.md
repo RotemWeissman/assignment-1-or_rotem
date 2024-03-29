@@ -12,7 +12,6 @@ The relevant files are under the data folder:
 - nl.csv (or the equivalent JSON file)
 - pt.csv (or the equivalent JSON file)
 - tl.csv (or the equivalent JSON file)
-- test.csv (or the equivalent JSON file)
 
 #### PART 1
 In the language_modeling.py file, implement the function *preprocess* that iterates over all the data files and creates a single vocabulary, containing all the tokens in the data. Our token definition is a single UTF-8 encoded character. So, the vocabulary list is a simple Python list of all the characters that you see at least once in the data.
