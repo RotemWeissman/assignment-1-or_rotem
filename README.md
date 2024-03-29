@@ -1,4 +1,5 @@
 # Assignment 1
+
 In this assignment you will be creating tools for learning and testing language models. The corpora that you will be working with are lists of tweets in 8 different languages that use the Latin script. The data is provided either formatted as CSV or as JSON, for your convenience. The end goal is to write a set of tools that can detect the language of a given tweet.
 
 
