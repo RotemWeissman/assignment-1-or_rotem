@@ -12,7 +12,6 @@ The relevant files are under the data folder:
 - nl.csv (or the equivalent JSON file)
 - pt.csv (or the equivalent JSON file)
 - tl.csv (or the equivalent JSON file)
-- test.csv (or the equivalent JSON file)
 
 #### PART 1
 In the language_modeling.py file, implement the function *preprocess* that iterates over all the data files and creates a single vocabulary, containing all the tokens in the data. Our token definition is a single UTF-8 encoded character. So, the vocabulary list is a simple Python list of all the characters that you see at least once in the data.
@@ -27,16 +26,13 @@ which means for example that after the sequence "ab", there is a 0.5 chance that
 Note - You should think how to add the add_one smoothing information to the dictionary and implement it.
 
 #### PART 3
-In the language_modeling.py file, implement the function *eval* that returns the perplexity of a model (dictionary) running over a given data file.
+In the language_modeling.py file, implement the function *eval* that returns the perplexity of a model (dictionary) running over the data file of the given target language.
 
 #### PART 4
-In the language_modeling.py file, implement the function *match_language_pair* which receives two language codes (e.g., en, es), the first is the source language and the second is the target language, and returns the perplexity of applying the lm of the source language over the text file of the target language. You should create a language model for the source language, using the given value of *n*, and then use it to calculate the perplexity on the text file of the target language.
+In the language_modeling.py file, implement the *match* function that calls *eval* using a specific value of *n* for every possible language pair among the languages we have data for. You should call *eval* for every language pair four times, with each call assign a different value for *n* (1-4). Each language pair is composed of the source language and the target language. Before you make the call, you need to call the *lm* function to create the language model for the source language. Then you can call *eval* with the language model and the target language. The function should return a pandas DataFrame with the following four columns: *source_lang*, *target_lang*, *n*, *perplexity*. The values for the first two columns are the two-letter language codes. The value for *n* is the *n* you use for generating the specific perplexity values which you should store in the forth column.
 
 #### PART 5
-In the language_modeling.py file, implement the *match* function that calls *match_language_pair* using a specific value of *n* for every possible language pair among the languages we have data for. You should call *match_language_pair* for every language pair four times, with each call assign a different value for *n* (1-4). This function should return a pandas DataFrame with columns: *source_lang*, *target_lang*, *n*, *perplexity*. The values for the first two columns are the two-letter language codes. The value for *n* is the *n* you use for generating the specific perplexity values which you should store in the forth column.
-
-#### PART 6
 In the language_modeling.py file, implement the *generate* function which takes a language code, *n*, the prompt (the starting text), the number of tokens to generate, and *r*, which is the random seed for any randomized action you plan to take in your implementation. The function should start generating tokens, one by one, using the language model of the given source language and *n*. The prompt should be used as a starting point for aligning on the probabilities to be used for generating the next token.
 
-#### PART 7
+#### PART 6
 Play with your generate function, try to generate different texts in different language and various values of *n*. No need to submit anything of that.
