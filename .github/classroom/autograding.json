@@ -1,0 +1,24 @@
+{
+    "tests": [
+      {
+        "name": "test_preprocess",
+        "setup": "",
+        "run": "python3 main.py",
+        "input": "1",
+        "output": "hello",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 100
+      },
+      {
+        "name": "test_lm",
+        "setup": "",
+        "run": "python3 main.py",
+        "input": "2",
+        "output": "hello",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 100
+      }
+    ]
+  }
