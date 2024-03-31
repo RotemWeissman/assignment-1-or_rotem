@@ -3,22 +3,22 @@
       {
         "name": "test_preprocess",
         "setup": "",
-        "run": "python3 main.py",
+        "run": "python3 auto_grader.py",
         "input": "1",
-        "output": "hello",
+        "output": "XXXXX",
         "comparison": "exact",
         "timeout": 10,
-        "points": 100
+        "points": 50
       },
       {
         "name": "test_lm",
         "setup": "",
-        "run": "python3 main.py",
+        "run": "python3 auto_grader.py",
         "input": "2",
-        "output": "hello",
+        "output": "XXXX",
         "comparison": "exact",
         "timeout": 10,
-        "points": 100
+        "points": 50
       }
     ]
   }
