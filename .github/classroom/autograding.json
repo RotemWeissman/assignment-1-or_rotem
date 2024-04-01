@@ -5,7 +5,7 @@
         "setup": "",
         "run": "python3 auto_grader.py",
         "input": "test_preprocess",
-        "output": "1725",
+        "output": "1",
         "comparison": "exact",
         "timeout": 10,
         "points": 10
@@ -15,40 +15,40 @@
         "setup": "",
         "run": "python3 auto_grader.py",
         "input": "test_lm",
-        "output": "XXXX",
+        "output": "1",
         "comparison": "exact",
         "timeout": 10,
-        "points": 20
+        "points": 30
       },
       {
         "name": "test_eval",
         "setup": "",
         "run": "python3 auto_grader.py",
         "input": "test_eval",
-        "output": "XXXX",
+        "output": "1",
         "comparison": "exact",
         "timeout": 10,
-        "points": 50
+        "points": 30
       },
       {
-        "name": "test_lm",
+        "name": "test_match",
         "setup": "",
         "run": "python3 auto_grader.py",
-        "input": "test_lm",
-        "output": "XXXX",
+        "input": "test_match",
+        "output": "1",
         "comparison": "exact",
         "timeout": 10,
-        "points": 50
+        "points": 20
       },
       {
-        "name": "test_lm",
+        "name": "test_generate",
         "setup": "",
         "run": "python3 auto_grader.py",
-        "input": "test_lm",
-        "output": "XXXX",
+        "input": "test_generate",
+        "output": "1",
         "comparison": "exact",
         "timeout": 10,
-        "points": 50
+        "points": 10
       }
     ]
   }

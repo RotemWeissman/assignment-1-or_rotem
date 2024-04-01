@@ -20,13 +20,19 @@ def test_eval():
     }
 
 def test_match():
-    return {}
+    df = match()
+    return {
+        'df_shape': df.shape,
+        'en_en_1': df[(df['source'] == 'en') & (df['target'] == 'en') & (df['n'] == 1)]['perplexity'].values[0],
+        'tl_tl_1': df[(df['source'] == 'tl') & (df['target'] == 'tl') & (df['n'] == 1)]['perplexity'].values[0],
+        'tl_nl_4': df[(df['source'] == 'tl') & (df['target'] == 'nl') & (df['n'] == 4)]['perplexity'].values[0],
+    }
 
 def test_generate():
     return {
         'english_2_gram': generate('en', 2, "I am", 20, 5),
         'english_3_gram': generate('en', 3, "I am", 20, 5),
-        'english_4_gram': generate('en', 4, "I am", 20, 5),
+        'english_4_gram': generate('en', 4, "I Love", 20, 5),
         'spanish_2_gram': generate('es', 2, "Soy", 20, 5),
         'spanish_3_gram': generate('es', 3, "Soy", 20, 5),
         'french_2_gram': generate('fr', 2, "Je suis", 20, 5),
