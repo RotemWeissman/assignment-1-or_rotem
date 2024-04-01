@@ -9,9 +9,25 @@ import json
 def get_args():
     parser = argparse.ArgumentParser(description='Language Modeling')
     parser.add_argument('test', type=str, help='The test to perform.')
+    parser.add_argument('num', type=int, help='The number of the test.', default=0)
     return parser.parse_args()
 
-def test_preprocess():
+def test_preprocess(results, num):
+    return results["vocab_length"]
+
+def test_lm(results, num):
+    return '''English 2-gram: {english_2_gram_length}
+    English 3-gram: {english_3_gram_length}
+    French 3-gram: {french_3_gram_length}
+    Spanish 3-gram: {spanish_3_gram_length}'''.format(**results)
+
+def test_eval(results, num):
+    assert False
+
+def test_match(results, num):
+    assert False
+
+def test_generate(results, num):
     assert False
 
 def main():
@@ -24,16 +40,16 @@ def main():
 
     # Switch between the tests
     match args.test:
-        case '1':
-            test_preprocess(results["test_preprocess"])
-        case '2':
-            pass
-        case '3':
-            pass
-        case '4':
-            pass
-        case '5':
-            pass
+        case 'test_preprocess':
+            test_preprocess(results["test_preprocess"], args.num)
+        case 'test_lm':
+            test_lm(results["test_lm"], args.num)
+        case 'test_eval':
+            test_eval(results["test_eval"], args.num)
+        case 'test_match':
+            test_match(results["test_match"], args.num)
+        case 'test_generate':
+            test_generate(results["test_generate"], args.num)
         case _:
             print('Invalid test.')
 
