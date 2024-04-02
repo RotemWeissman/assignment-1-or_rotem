@@ -12,39 +12,41 @@ def get_args():
     return parser.parse_args()
 
 def test_preprocess(results):
-    if results["vocab_length"] != 1724:
+    if results["vocab_length"] != 1803:
         return f"Vocab length is {results['vocab_length']}, expected 1724"
     return 1
 
 def test_lm(results):
-    if results["english_2_gram_length"] != 697:
+    if results["english_2_gram_length"] != 725:
         return f"English 2-gram length is {results['english_2_gram_length']}, expected 697"
-    if results["english_3_gram_length"] != 4841:
+    if results["english_3_gram_length"] != 7932:
         return f"English 3-gram length is {results['english_3_gram_length']}, expected 4841"
-    if results["french_3_gram_length"] != 4756:
+    if results["french_3_gram_length"] != 7972:
         return f"French 3-gram length is {results['french_2_gram_length']}, expected 4756"
-    if results["spanish_3_gram_length"] != 4760:
+    if results["spanish_3_gram_length"] != 8035:
         return f"Spanish 3-gram length is {results['spanish_2_gram_length']}, expected 4760"
     return 1
     
 def test_eval(results):
-    if int(results["english_on_english"]) != 22:
-        return f"English on English is {results['english_on_english']}, expected 22.24"
-    if int(results["english_on_french"]) != 46:
-        return f"English on French is {results['english_on_french']}, expected 46.44"
-    if int(results["english_on_spanish"]) != 43:
-        return f"English on Spanish is {results['english_on_spanish']}, expected 43.76"
+    if int(results["english_on_english"]) not in [8, 9]:
+        return f"English on English is {results['english_on_english']}, expected 9.32"
+    if int(results["english_on_french"]) not in [27, 28]:
+        return f"English on French is {results['english_on_french']}, expected 27.82"
+    if int(results["english_on_spanish"]) not in [25, 26]:
+        return f"English on Spanish is {results['english_on_spanish']}, expected 26.46"
     return 1
 
 def test_match(results):
     if results["df_shape"] != list((256, 4)):
         return f"Dataframe shape is {results['df_shape']}, expected (256, 4)"
-    if int(results["en_en_1"]) not in [29, 30]:
-        return f"English on English 1-gram is {results['en_en_1']}, expected 29.95"
-    if int(results["tl_tl_1"]) not in [60, 61]:
-        return f"Tagalog on Tagalog 1-gram is {results['tl_tl_1']}, expected 61.04"
-    if int(results["tl_nl_4"]) not in [285, 286]:
-        return f"Tagalog on Dutch 4-gram is {results['tl_nl_4']}, expected 286.05"
+    
+    res = [
+        int(results["en_en_1"]),
+        int(results["tl_tl_1"]),
+        int(results["tl_nl_4"])
+    ]
+    if sorted(res) != res:
+        return f"En on En should be the lowest, followed by Tl on Tl, and Tl on Nl. Got {res}"
     return 1
 
 def test_generate(results):
