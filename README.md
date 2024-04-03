@@ -20,5 +20,5 @@ Place only the link; see the example in the file.
 ## General instructions
 Please commit and push only the **results.json** and **notebook_link.txt** files. Please avoid changing/deleting files under the .github folder, as this may interfere with the auto-grading operation.
 
-GOOD LUCK!
+GOOD LUCK! 🤗
 
