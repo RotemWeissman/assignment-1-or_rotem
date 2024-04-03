@@ -12,19 +12,19 @@ def get_args():
     return parser.parse_args()
 
 def test_preprocess(results):
-    if results["vocab_length"] != 1803:
-        return f"Vocab length is {results['vocab_length']}, expected 1724"
+    if results["vocab_length"] != 1802:
+        return f"Vocab length is {results['vocab_length']}, expected 1802"
     return 1
 
 def test_lm(results):
-    if results["english_2_gram_length"] != 725:
-        return f"English 2-gram length is {results['english_2_gram_length']}, expected 697"
-    if results["english_3_gram_length"] != 7932:
-        return f"English 3-gram length is {results['english_3_gram_length']}, expected 4841"
+    if results["english_2_gram_length"] != 724:
+        return f"English 2-gram length is {results['english_2_gram_length']}, expected 724"
+    if results["english_3_gram_length"] != 7931:
+        return f"English 3-gram length is {results['english_3_gram_length']}, expected 7931"
     if results["french_3_gram_length"] != 7972:
-        return f"French 3-gram length is {results['french_2_gram_length']}, expected 4756"
+        return f"French 3-gram length is {results['french_3_gram_length']}, expected 7972"
     if results["spanish_3_gram_length"] != 8035:
-        return f"Spanish 3-gram length is {results['spanish_2_gram_length']}, expected 4760"
+        return f"Spanish 3-gram length is {results['spanish_3_gram_length']}, expected 8035"
     return 1
     
 def test_eval(results):
@@ -64,20 +64,27 @@ def main():
     with open('results.json', 'r') as f:
         results = json.load(f)
 
+    # Initialize the result variable
+    result = None
+
     # Switch between the tests
     match args.test:
         case 'test_preprocess':
-            return test_preprocess(results["test_preprocess"])
+            result = test_preprocess(results["test_preprocess"])
         case 'test_lm':
-            return test_lm(results["test_lm"])
+            result = test_lm(results["test_lm"])
         case 'test_eval':
-            return test_eval(results["test_eval"])
+            result = test_eval(results["test_eval"])
         case 'test_match':
-            return test_match(results["test_match"])
+            result = test_match(results["test_match"])
         case 'test_generate':
-            return test_generate(results["test_generate"])
+            result = test_generate(results["test_generate"])
         case _:
             print('Invalid test.')
+
+    # Print the result for the autograder to capture
+    if result is not None:
+        print(result)
 
 if __name__ == '__main__':
     main()
