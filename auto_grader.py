@@ -12,8 +12,8 @@ def get_args():
     return parser.parse_args()
 
 def test_preprocess(results):
-    if results["vocab_length"] != 1802:
-        return f"Vocab length is {results['vocab_length']}, expected 1802"
+    if results["vocab_length"] != 1804:
+        return f"Vocab length is {results['vocab_length']}, expected 1804"
     return 1
 
 def test_lm(results):
