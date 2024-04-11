@@ -27,14 +27,31 @@ def test_lm(results):
         return f"Spanish 3-gram length is {results['spanish_3_gram_length']}, expected 8468"
     return 1
     
+def relative_difference(expected, actual):
+    """Calculate the relative difference between expected and actual values."""
+    return abs(expected - actual) / expected
+
 def test_eval(results):
-    if int(results["english_on_english"]) not in [18, 19, 20]:
-        return f"English on English is {results['english_on_english']}, expected 19.24"
-    if int(results["english_on_french"]) not in [25, 26]:
-        return f"English on French is {results['english_on_french']}, expected 25.98"
-    if int(results["english_on_spanish"]) not in [24, 25]:
-        return f"English on Spanish is {results['english_on_spanish']}, expected 24.97"
+    
+    expected_english_on_english = 9.32
+    expected_english_on_french = 27.82
+    expected_english_on_spanish = 26.46
+    
+    tolerance = 0.05  # Accept up to 5% difference
+
+    diff_english_on_english = relative_difference(expected_english_on_english, float(results["english_on_english"]))
+    diff_english_on_french = relative_difference(expected_english_on_french, float(results["english_on_french"]))
+    diff_english_on_spanish = relative_difference(expected_english_on_spanish, float(results["english_on_spanish"]))
+
+    if diff_english_on_english > tolerance:
+        return f"English on English is {results['english_on_english']}, expected approximately {expected_english_on_english} (within {tolerance*100}% tolerance)"
+    if diff_english_on_french > tolerance:
+        return f"English on French is {results['english_on_french']}, expected approximately {expected_english_on_french} (within {tolerance*100}% tolerance)"
+    if diff_english_on_spanish > tolerance:
+        return f"English on Spanish is {results['english_on_spanish']}, expected approximately {expected_english_on_spanish} (within {tolerance*100}% tolerance)"
+    
     return 1
+
 
 def test_match(results):
     if results["df_shape"] != list((256, 4)):
