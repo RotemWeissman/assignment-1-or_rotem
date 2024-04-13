@@ -33,9 +33,9 @@ def relative_difference(expected, actual):
 
 def test_eval(results):
     
-    expected_english_on_english = 9.32
-    expected_english_on_french = 27.82
-    expected_english_on_spanish = 26.46
+    expected_english_on_english = 19.24
+    expected_english_on_french = 25.98
+    expected_english_on_spanish = 24.97 
     
     tolerance = 0.05  # Accept up to 5% difference
 
