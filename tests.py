@@ -6,17 +6,17 @@ def test_preprocess():
 
 def test_lm():
     return {
-        'english_2_gram_length': len(lm('en', 2)),
-        'english_3_gram_length': len(lm('en', 3)),
-        'french_3_gram_length': len(lm('fr', 3)),
-        'spanish_3_gram_length': len(lm('es', 3)),
+        'english_2_gram_length': len(lm('en', 2, False)),
+        'english_3_gram_length': len(lm('en', 3, False)),
+        'french_3_gram_length': len(lm('fr', 3, False)),
+        'spanish_3_gram_length': len(lm('es', 3, False)),
     }
 
 def test_eval():
     return {
-        'english_on_english': round(eval(lm('en', 3), 'en'), 2),
-        'english_on_french': round(eval(lm('en', 3), 'fr'), 2),
-        'english_on_spanish': round(eval(lm('en', 3), 'es'), 2),
+        'english_on_english': round(eval(lm('en', 3, False), 'en'), 2),
+        'english_on_french': round(eval(lm('en', 3, False), 'fr'), 2),
+        'english_on_spanish': round(eval(lm('en', 3, False), 'es'), 2),
     }
 
 def test_match():
