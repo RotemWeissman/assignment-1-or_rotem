@@ -14,9 +14,9 @@ def test_lm():
 
 def test_eval():
     return {
-        'english_on_english': round(eval(lm('en', 3, True), 'en'), 2),
-        'english_on_french': round(eval(lm('en', 3, True), 'fr'), 2),
-        'english_on_spanish': round(eval(lm('en', 3, True), 'es'), 2),
+        'english_on_english': round(eval(lm('en', 3, True), 'en', 3), 2),
+        'english_on_french': round(eval(lm('en', 3, True), 'fr', 3), 2),
+        'english_on_spanish': round(eval(lm('en', 3, True), 'es', 3), 2),
     }
 
 def test_match():
@@ -30,6 +30,7 @@ def test_match():
 
 def test_generate():
     return {
+        'english_1_gram': generate('en', 1, "I", 20, 5), 
         'english_2_gram': generate('en', 2, "I am", 20, 5),
         'english_3_gram': generate('en', 3, "I am", 20, 5),
         'english_4_gram': generate('en', 4, "I Love", 20, 5),

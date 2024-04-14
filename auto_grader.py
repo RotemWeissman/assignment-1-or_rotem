@@ -19,12 +19,12 @@ def test_preprocess(results):
 def test_lm(results):
     if results["english_2_gram_length"] != 748:
         return f"English 2-gram length is {results['english_2_gram_length']}, expected 748"
-    if results["english_3_gram_length"] != 8238:
-        return f"English 3-gram length is {results['english_3_gram_length']}, expected 8238"
-    if results["french_3_gram_length"] != 8285:
-        return f"French 3-gram length is {results['french_3_gram_length']}, expected 8285"
-    if results["spanish_3_gram_length"] != 8468:
-        return f"Spanish 3-gram length is {results['spanish_3_gram_length']}, expected 8468"
+    if results["english_3_gram_length"] != 8239:
+        return f"English 3-gram length is {results['english_3_gram_length']}, expected 8239"
+    if results["french_3_gram_length"] != 8286:
+        return f"French 3-gram length is {results['french_3_gram_length']}, expected 8286"
+    if results["spanish_3_gram_length"] != 8469:
+        return f"Spanish 3-gram length is {results['spanish_3_gram_length']}, expected 8469"
     return 1
     
 def relative_difference(expected, actual):
@@ -33,9 +33,9 @@ def relative_difference(expected, actual):
 
 def test_eval(results):
     
-    expected_english_on_english = 19.24
-    expected_english_on_french = 25.98
-    expected_english_on_spanish = 24.97 
+    expected_english_on_english = 9.39
+    expected_english_on_french = 27.75
+    expected_english_on_spanish = 26.61
     
     tolerance = 0.05  # Accept up to 5% difference
 
