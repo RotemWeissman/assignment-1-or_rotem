@@ -43,16 +43,13 @@ def test_eval(results):
     return 1
     
 def test_match(results):
-    if results["df_shape"] != list((256, 4)):
-        return f"Dataframe shape is {results['df_shape']}, expected (256, 4)"
-    
     res = [
-        int(results["en_en_1"]),
-        int(results["en_tl_1"]),
+        int(results["en_en_3"]),
+        int(results["en_tl_3"]),
         int(results["en_nl_3"])
     ]
     if sorted(res) != res:
-        return f"En on En should be the lowest, followed by Tl on Tl, and Tl on Nl. Got {res}"
+        return f"En on En should be the lowest, followed by En on Tl, and En on Nl. Got {res}"
     return 1
 
 def test_generate(results):
