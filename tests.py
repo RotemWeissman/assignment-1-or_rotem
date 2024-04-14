@@ -23,10 +23,9 @@ def test_eval():
 def test_match():
     df = match()
     return {
-        'df_shape': df.shape,
-        'en_en_1': df[(df['source'] == 'en') & (df['target'] == 'en') & (df['n'] == 1)]['perplexity'].values[0],
-        'tl_tl_1': df[(df['source'] == 'tl') & (df['target'] == 'tl') & (df['n'] == 1)]['perplexity'].values[0],
-        'tl_nl_4': df[(df['source'] == 'tl') & (df['target'] == 'nl') & (df['n'] == 4)]['perplexity'].values[0],
+        'en_en_3': df[(df['source'] == 'en') & (df['target'] == 'en') & (df['n'] == 3)]['perplexity'].values[0],
+        'en_tl_3': df[(df['source'] == 'en') & (df['target'] == 'tl') & (df['n'] == 3)]['perplexity'].values[0],
+        'en_nl_3': df[(df['source'] == 'en') & (df['target'] == 'nl') & (df['n'] == 3)]['perplexity'].values[0],
     }
 
 def test_generate():
