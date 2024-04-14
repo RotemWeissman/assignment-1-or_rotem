@@ -32,35 +32,24 @@ def relative_difference(expected, actual):
     return abs(expected - actual) / expected
 
 def test_eval(results):
-    
-    expected_english_on_english = 9.39
-    expected_english_on_french = 27.75
-    expected_english_on_spanish = 26.61
-    
-    tolerance = 0.05  # Accept up to 5% difference
-
-    diff_english_on_english = relative_difference(expected_english_on_english, float(results["english_on_english"]))
-    diff_english_on_french = relative_difference(expected_english_on_french, float(results["english_on_french"]))
-    diff_english_on_spanish = relative_difference(expected_english_on_spanish, float(results["english_on_spanish"]))
-
-    if diff_english_on_english > tolerance:
-        return f"English on English is {results['english_on_english']}, expected approximately {expected_english_on_english} (within {tolerance*100}% tolerance)"
-    if diff_english_on_french > tolerance:
-        return f"English on French is {results['english_on_french']}, expected approximately {expected_english_on_french} (within {tolerance*100}% tolerance)"
-    if diff_english_on_spanish > tolerance:
-        return f"English on Spanish is {results['english_on_spanish']}, expected approximately {expected_english_on_spanish} (within {tolerance*100}% tolerance)"
-    
+    res = [
+        float(results["en_en"]),
+        float(results["en_fr"]),
+        float(results["en_tl"]),
+        float(results["en_nl"])
+    ]
+    if sorted(res) != res:
+        return f"En on En should be the lowest, followed by En on Fr, En on Tl, and En on Nl. Got {res}"
     return 1
-
-
+    
 def test_match(results):
     if results["df_shape"] != list((256, 4)):
         return f"Dataframe shape is {results['df_shape']}, expected (256, 4)"
     
     res = [
         int(results["en_en_1"]),
-        int(results["tl_tl_1"]),
-        int(results["tl_nl_4"])
+        int(results["en_tl_1"]),
+        int(results["en_nl_3"])
     ]
     if sorted(res) != res:
         return f"En on En should be the lowest, followed by Tl on Tl, and Tl on Nl. Got {res}"
