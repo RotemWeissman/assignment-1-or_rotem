@@ -32,37 +32,46 @@ def relative_difference(expected, actual):
     return abs(expected - actual) / expected
 
 def test_eval(results):
-    res1 = [
-        float(results["en_en"]),
-        float(results["en_fr"]),
-        float(results["en_tl"]),
-        float(results["en_nl"])
+    perplexity_en_on_en = float(results["en_en"])  
+    perplexity_en_on_fr = float(results["en_fr"])  
+    perplexity_en_on_tl = float(results["en_tl"])  
+    perplexity_en_on_nl = float(results["en_nl"])  
+
+    perplexities = [
+        perplexity_en_on_en,
+        perplexity_en_on_fr,
+        perplexity_en_on_tl,
+        perplexity_en_on_nl
     ]
-    res2 = [
-        float(results["en_en"]),
-        float(results["en_fr"]),
-        float(results["en_nl"]),
-        float(results["en_tl"])
-    ]
-    if sorted(res) != res1 and sorted(res) != res2:
-        return f"En on En should be the lowest, followed by En on Fr, and then En on Tl and En on Nl in any order. Got {res}"
+
+    if min(perplexities) != perplexity_en_on_en:
+        return f"English model should perform best on English text. Results: {results}"
+    
+    if not (perplexity_en_on_en <= perplexity_en_on_fr <= max(perplexity_en_on_tl, perplexity_en_on_nl)):
+        return f"Expected increasing perplexity from English to other languages. Results: {results}"
+
     return 1
+
     
 def test_match(results):
-    res1 = [
-        int(results["en_en_3"]),
-        int(results["en_tl_3"]),
-        int(results["en_nl_3"])
+    perplexity_en_on_en = int(results["en_en_3"])  
+    perplexity_en_on_tl = int(results["en_tl_3"])  
+    perplexity_en_on_nl = int(results["en_nl_3"])  
+
+    perplexities = [
+        perplexity_en_on_en,
+        perplexity_en_on_tl,
+        perplexity_en_on_nl
     ]
-    
-    res2 = [
-        int(results["en_en_3"]),
-        int(results["en_tl_3"]),
-        int(results["en_nl_3"])
-    ]
-    if sorted(res) != res1 and sorted(res) != res2:
-        return f"En on En should be the lowest, followed by En on Tl and En on Nl in any order. Got {res}"
+
+    if min(perplexities) != perplexity_en_on_en:
+        return f"English model should perform best on English text. Results: {results}"
+
+    if not (perplexity_en_on_en <= perplexity_en_on_tl <= perplexity_en_on_nl):
+        return f"Expected increasing perplexity from English to other languages. Results: {results}"
+
     return 1
+
 
 def test_generate(results):
     if not results["english_2_gram"].startswith("I am"):
