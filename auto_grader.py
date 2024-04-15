@@ -44,7 +44,7 @@ def test_eval(results):
         float(results["en_nl"]),
         float(results["en_tl"])
     ]
-    if sorted(res) != res1 or sorted(res) != res2:
+    if sorted(res) != res1 and sorted(res) != res2:
         return f"En on En should be the lowest, followed by En on Fr, and then En on Tl and En on Nl in any order. Got {res}"
     return 1
     
@@ -60,7 +60,7 @@ def test_match(results):
         int(results["en_tl_3"]),
         int(results["en_nl_3"])
     ]
-    if sorted(res) != res1 or sorted(res) != res2:
+    if sorted(res) != res1 and sorted(res) != res2:
         return f"En on En should be the lowest, followed by En on Tl and En on Nl in any order. Got {res}"
     return 1
 
