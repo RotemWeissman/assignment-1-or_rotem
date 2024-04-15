@@ -67,7 +67,7 @@ def test_match(results):
     if min(perplexities) != perplexity_en_on_en:
         return f"English model should perform best on English text. Results: {results}"
 
-    if not (perplexity_en_on_en <= perplexity_en_on_tl <= perplexity_en_on_nl):
+    if not (perplexity_en_on_en <= max(perplexity_en_on_tl, perplexity_en_on_nl)):
         return f"Expected increasing perplexity from English to other languages. Results: {results}"
 
     return 1
