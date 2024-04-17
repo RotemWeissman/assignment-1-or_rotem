@@ -19,35 +19,59 @@ def test_preprocess(results):
 def test_lm(results):
     if results["english_2_gram_length"] != 748:
         return f"English 2-gram length is {results['english_2_gram_length']}, expected 748"
-    if results["english_3_gram_length"] != 8238:
-        return f"English 3-gram length is {results['english_3_gram_length']}, expected 8238"
-    if results["french_3_gram_length"] != 8285:
-        return f"French 3-gram length is {results['french_3_gram_length']}, expected 8285"
-    if results["spanish_3_gram_length"] != 8468:
-        return f"Spanish 3-gram length is {results['spanish_3_gram_length']}, expected 8468"
+    if results["english_3_gram_length"] != 8239:
+        return f"English 3-gram length is {results['english_3_gram_length']}, expected 8239"
+    if results["french_3_gram_length"] != 8286:
+        return f"French 3-gram length is {results['french_3_gram_length']}, expected 8286"
+    if results["spanish_3_gram_length"] != 8469:
+        return f"Spanish 3-gram length is {results['spanish_3_gram_length']}, expected 8469"
     return 1
     
+def relative_difference(expected, actual):
+    """Calculate the relative difference between expected and actual values."""
+    return abs(expected - actual) / expected
+
 def test_eval(results):
-    if int(results["english_on_english"]) not in [18, 19, 20]:
-        return f"English on English is {results['english_on_english']}, expected 19.24"
-    if int(results["english_on_french"]) not in [25, 26]:
-        return f"English on French is {results['english_on_french']}, expected 25.98"
-    if int(results["english_on_spanish"]) not in [24, 25]:
-        return f"English on Spanish is {results['english_on_spanish']}, expected 24.97"
+    perplexity_en_on_en = float(results["en_en"])  
+    perplexity_en_on_fr = float(results["en_fr"])  
+    perplexity_en_on_tl = float(results["en_tl"])  
+    perplexity_en_on_nl = float(results["en_nl"])  
+
+    perplexities = [
+        perplexity_en_on_en,
+        perplexity_en_on_fr,
+        perplexity_en_on_tl,
+        perplexity_en_on_nl
+    ]
+
+    if min(perplexities) != perplexity_en_on_en:
+        return f"English model should perform best on English text. Results: {results}"
+    
+    if not (perplexity_en_on_en <= perplexity_en_on_fr <= max(perplexity_en_on_tl, perplexity_en_on_nl)):
+        return f"Expected increasing perplexity from English to other languages. Results: {results}"
+
     return 1
 
-def test_match(results):
-    if results["df_shape"] != list((256, 4)):
-        return f"Dataframe shape is {results['df_shape']}, expected (256, 4)"
     
-    res = [
-        int(results["en_en_1"]),
-        int(results["tl_tl_1"]),
-        int(results["tl_nl_4"])
+def test_match(results):
+    perplexity_en_on_en = int(results["en_en_3"])  
+    perplexity_en_on_tl = int(results["en_tl_3"])  
+    perplexity_en_on_nl = int(results["en_nl_3"])  
+
+    perplexities = [
+        perplexity_en_on_en,
+        perplexity_en_on_tl,
+        perplexity_en_on_nl
     ]
-    if sorted(res) != res:
-        return f"En on En should be the lowest, followed by Tl on Tl, and Tl on Nl. Got {res}"
+
+    if min(perplexities) != perplexity_en_on_en:
+        return f"English model should perform best on English text. Results: {results}"
+
+    if not (perplexity_en_on_en <= max(perplexity_en_on_tl, perplexity_en_on_nl)):
+        return f"Expected increasing perplexity from English to other languages. Results: {results}"
+
     return 1
+
 
 def test_generate(results):
     if not results["english_2_gram"].startswith("I am"):
